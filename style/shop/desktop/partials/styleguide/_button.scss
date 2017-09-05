@@ -1,0 +1,23 @@
+/**
+ BUTTON
+ */
+
+// Primary
+.sg-p-btn {
+  @include mng-button-primary;
+}
+
+// Secondary
+.sg-s-btn {
+  @include mng-button-secondary;
+}
+
+// Tertiary
+.sg-t-btn {
+  @include mng-button-tertiary;
+}
+
+// Dark
+.sg-d-btn {
+  @include mng-button-dark;
+}

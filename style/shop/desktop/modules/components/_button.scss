@@ -1,0 +1,80 @@
+/// button.scss
+/// Mixin for buttons
+
+@mixin mng-button {
+  @include size(100% 42px);
+  font-family: $regular;
+  line-height: 42px;
+  text-align: center;
+  cursor: pointer;
+  transition: $master-transition;
+}
+
+/// Mixin for default/primary button
+@mixin mng-button-primary {
+  @include mng-button;
+  color: $white;
+  font-size: $size-m;
+  background-color: $black;
+  border: 0;
+
+  &:hover {
+    background-color: $abbey;
+  }
+
+  &:focus,
+  &:active {
+    background-color: $black;
+  }
+
+  &:disabled,
+  &--disabled {
+    color: $nevada;
+    background-color: $wild-sand;
+  }
+}
+
+/// Mixin for secondary button
+@mixin mng-button-secondary {
+  @include mng-button;
+  @include mng-button-primary;
+  font-size: $size-s;
+}
+
+/// Mixin for tertiary button
+@mixin mng-button-tertiary {
+  @include mng-button;
+  color: $black;
+  font-size: $size-s;
+  background-color: $white;
+  border: 1px solid $concrete;
+
+  &:hover {
+    background-color: $woodsmoke;
+  }
+
+  &:disabled {
+    color: $bombay;
+  }
+}
+
+/// Mixin for Dark button
+@mixin mng-button-dark {
+  @include mng-button;
+  color: $white;
+  font-size: $size-s;
+  background-color: $shark;
+  border: 1px solid $concrete;
+
+  &:hover {
+    background-color: $woodsmoke;
+    border-width: 2px;
+  }
+
+  &:disabled,
+  &--disabled {
+    color: $abbey;
+    border-color: $abbey;
+  }
+}
+

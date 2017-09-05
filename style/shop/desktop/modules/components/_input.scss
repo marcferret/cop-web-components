@@ -1,0 +1,82 @@
+/// input.scss
+/// Mixin for form text inputs
+
+@mixin mng-input {
+  box-sizing: border-box;
+  @include size(100% 42px);
+  color: $black;
+  line-height: 42px;
+  border-color: $iron;
+  border-width: 1px;
+  transition: $master-transition;
+  outline: none;
+  font-family: $regular;
+  font-size: $size-s;
+
+  // Hover border-color is common for two input styles
+  &:hover,
+  &:focus,
+  &:active {
+    border-color: $nevada
+  }
+
+  &:disabled,
+  &--disabled {
+    border-color: $iron;
+  }
+
+  // Extra info & error
+  & ~ .sg-inp-sugg {
+    display: block;
+    @include margin(-2.5px null 7.5px);
+    font-family: $regular;
+    font-size: $size-xs;
+
+    &:empty {
+      display: none;
+    }
+
+    // .sg-inp-sugg--info
+    &--info {
+      color: $abbey;
+    }
+
+    // .sg-inp-sugg--error
+    &--error {
+      color: $pomegranate;
+    }
+  }
+}
+
+/// Mixin for default/primary input
+@mixin mng-input-primary {
+  @include mng-input;
+
+  @include padding(null null null 15px);
+  border-style: solid;
+  @include mng-placeholder {
+    color: $bombay;
+  }
+  
+  &:disabled,
+  &--disabled {
+    color: $nevada;
+    background-color: $wild-sand;
+  }
+}
+
+/// Mixin for icon-style input
+@mixin mng-input-icon {
+  @include mng-input;
+
+  background-color: $white;
+  border-bottom-style: solid;
+  @include mng-placeholder {
+    color: $nevada;
+  }
+
+  &:disabled,
+  &--disabled {
+    color: $iron;
+  }
+}

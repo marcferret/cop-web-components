@@ -1,0 +1,73 @@
+// ==================================
+// FONTS
+// ==================================
+
+// Using bourbon-.io @font-face mixin
+@include font-face('mango-regular', '//st.mngbcn.com/static/assets/fonts/MangoSans-Regular', $file-formats: eot woff woff2 ttf);
+@include font-face('mango-bold', '//st.mngbcn.com/static/assets/fonts/MangoSans-Bold', $file-formats: eot woff woff2 ttf);
+@include font-face('mango-light', '//st.mngbcn.com/static/assets/fonts/MangoSans-Light', $file-formats: eot woff woff2 ttf);
+
+// ----------------------------------
+// Icon fonts
+// ----------------------------------
+@font-face {
+  font-family: 'mango-icons';
+  src:url('//st.mngbcn.com/static/assets/fonts/Mango-Icon.eot?a5lzx2');
+  src:url('//st.mngbcn.com/static/assets/fonts/Mango-Icon.eot?a5lzx2#iefix') format('embedded-opentype'),
+  url('//st.mngbcn.com/static/assets/fonts/Mango-Icon.ttf?a5lzx2') format('truetype'),
+  url('//st.mngbcn.com/static/assets/fonts/Mango-Icon.woff?a5lzx2') format('woff'),
+  url('//st.mngbcn.com/static/assets/fonts/Mango-Icon.svg?a5lzx2#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'mango-fav';
+  src:url('//st.mngbcn.com/static/assets/fonts/Mango-Fav.eot?7ub55z');
+  src:url('//st.mngbcn.com/static/assets/fonts/Mango-Fav.eot?7ub55z#iefix') format('embedded-opentype'),
+  url('//st.mngbcn.com/static/assets/fonts/Mango-Fav.ttf?7ub55z') format('truetype'),
+  url('//st.mngbcn.com/static/assets/fonts/Mango-Fav.woff7ub55z2') format('woff'),
+  url('//st.mngbcn.com/static/assets/fonts/Mango-Fav.svg?7ub55z#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+// TODO: descargar fuentes cuando se decida la definitiva
+/*
+ * Droid Arabic Naskh (Arabic) http://www.google.com/fonts/earlyaccess
+ */
+@font-face {
+  font-family: 'Droid Arabic Naskh';
+  font-style: normal;
+  font-weight: 400;
+  src: url(//fonts.gstatic.com/ea/droidarabicnaskh/v7/DroidNaskh-Regular.eot);
+  src: url(//fonts.gstatic.com/ea/droidarabicnaskh/v7/DroidNaskh-Regular.eot?#iefix) format('embedded-opentype'),
+  url(//fonts.gstatic.com/ea/droidarabicnaskh/v7/DroidNaskh-Regular.woff2) format('woff2'),
+  url(//fonts.gstatic.com/ea/droidarabicnaskh/v7/DroidNaskh-Regular.woff) format('woff'),
+  url(//fonts.gstatic.com/ea/droidarabicnaskh/v7/DroidNaskh-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Droid Arabic Naskh';
+  font-style: normal;
+  font-weight: 700;
+  src: url(//fonts.gstatic.com/ea/droidarabicnaskh/v7/DroidNaskh-Bold.eot);
+  src: url(//fonts.gstatic.com/ea/droidarabicnaskh/v7/DroidNaskh-Bold.eot?#iefix) format('embedded-opentype'),
+  url(//fonts.gstatic.com/ea/droidarabicnaskh/v7/DroidNaskh-Bold.woff2) format('woff2'),
+  url(//fonts.gstatic.com/ea/droidarabicnaskh/v7/DroidNaskh-Bold.woff) format('woff'),
+  url(//fonts.gstatic.com/ea/droidarabicnaskh/v7/DroidNaskh-Bold.ttf) format('truetype');
+}
+
+// ----------------------------------
+// Mango form
+// ----------------------------------
+@font-face {
+  font-family: 'mango-form';
+  src:url('//st.mngbcn.com/static/assets/fonts/Mango-form-icons.eot?xb3q4b');
+  src:url('//st.mngbcn.com/static/assets/fonts/Mango-form-icons.eot?xb3q4b#iefix') format('embedded-opentype'),
+  url('//st.mngbcn.com/static/assets/fonts/Mango-form-icons.ttf?xb3q4b') format('truetype'),
+  url('//st.mngbcn.com/static/assets/fonts/Mango-form-icons.woff?xb3q4b') format('woff'),
+  url('//st.mngbcn.com/static/assets/fonts/Mango-form-icons.svg?xb3q4b#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
