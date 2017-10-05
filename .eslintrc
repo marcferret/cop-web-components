@@ -4,8 +4,7 @@
   "extends": "airbnb",
   "globals": {
     "document": true,
-    "window": true,
-    "google": true
+    "window": true
   },
   "rules": {
     "react/prop-types": ["error", { "ignore": [], "customValidators": [], "skipUndeclared": true }]

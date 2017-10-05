@@ -1,11 +1,14 @@
 {
-  "name": "piur",
+  "name": "mng-starter",
   "version": "1.0.0",
-  "description": "Piur",
+  "description": "MANGO starter",
   "main": "index.jsx",
-  "repository": "git@jira.mangodev.net/stash/scm/fron/piur.git",
+  "repository": "git@jira.mangodev.net/stash/scm/fron/mng-starter.git",
   "scripts": {
-    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "start": "webpack-dev-server --open",
+    "dev": "webpack -d",
+    "dev:watch": "webpack -d --watch",
+    "pro": "webpack -p",
     "test": "jest",
     "test:watch": "npm run test -- --watch",
     "test:coverage": "jest --coverage"
@@ -18,7 +21,15 @@
       "jest-enzyme"
     ]
   },
-  "author": "Gerard Albanell <gerard.albanell@mango.com>",
+  "author": "Equipo ecommerce frontend <eqp.ecommerce.frontend@mango.com>",
+  "contributors": [
+    "Gerard Albanell <gerard.albanell@mango.com>",
+    "Sergio Campillo <sergio.campillo@mango.com>",
+    "David Masa <david.masa@mango.com>",
+    "Quique Vals <quique.vals@mango.com>",
+    "David García <david.garcia@mango.com>",
+    "Marc Ferret <marc.ferret@mango.com>"
+  ],
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.25.0",
@@ -39,6 +50,7 @@
     "extract-text-webpack-plugin": "^3.0.0",
     "jest": "^20.0.4",
     "jest-enzyme": "^3.4.0",
+    "mng-styleguide": "https://quique.vals@jira.mangodev.net/stash/scm/fron/mng-styleguide.git",
     "node-sass": "^4.5.3",
     "react-addons-test-utils": "^15.6.0",
     "react-dom": "^0.14.9",
@@ -53,16 +65,18 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
-    "in-viewport": "^3.5.0",
+    "es6-promise": "^4.1.1",
     "lodash": "^4.17.4",
+    "postcss-loader": "^2.0.6",
     "react": "^15.5.4",
+    "react-baidu-maps": "^1.0.3",
     "react-dom": "^15.5.4",
     "react-google-maps": "^7.2.0",
+    "react-perfect-scrollbar": "^0.2.2",
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.1",
     "redux": "^3.6.0",
     "redux-form": "^6.7.0",
-    "redux-promise": "^0.5.3",
-    "universal-cookie": "^2.0.8"
+    "redux-promise": "^0.5.3"
   }
 }

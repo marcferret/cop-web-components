@@ -1,7 +1,0 @@
-/// CSS image replacement
-/// Accessible hiding
-@mixin mng-hide-text() {
-  position: absolute;
-  top: -9999px;
-  left: -9999px;
-}

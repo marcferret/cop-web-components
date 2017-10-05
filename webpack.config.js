@@ -1,34 +1,34 @@
-// TODO: Separacion dispositivos
-// TODO: Estructura SASS dentro de cada specific
-
 const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // Base params
 // Entry path
-let entryFile = 'index.jsx';
-let entryPath = 'src/shop/';
+const entryPath = 'src/';
+const entryFile = 'index.jsx';
 
 // Output path
-let outputPath = 'C:/eb/workspaces/mango/DEV_PIUR-16_LandingMangoCard/WebRoot/static/specifics/mangoCard/js/';
-// let outputPath = 'build/';
-let outputFile = 'mangoCard.js';
+const outputPath = 'C:\\eb\\workspaces\\mango\\TO-BE_DEFINED';
+const outputFile = 'main.js';
 
 // Extract SASS and convert to CSS file
 // Output the CSS into a different file
 const extractSass = new ExtractTextPlugin({
-  filename: '../css/styles.css',
-  // filename: '../build/styles.css',
+  filename: 'styles.css',
 });
 
 module.exports = {
   entry: path.resolve(entryPath, entryFile),
 
+  devtool: 'inline-source-map',
+
+  devServer: {
+    disableHostCheck: true,
+  },
+
   output: {
     filename: outputFile,
-    path: path.resolve(outputPath),
-    // path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, outputPath),
   },
 
   module: {
@@ -39,7 +39,13 @@ module.exports = {
         use: extractSass.extract({
           use: [
             { loader: 'css-loader' },
-            { loader: 'sass-loader' },
+            { loader: 'postcss-loader' },
+            {
+              loader: 'sass-loader',
+              options: {
+                includePaths: ['node_modules'],
+              },
+            },
           ],
         }),
       },
@@ -82,9 +88,11 @@ module.exports = {
   ],
 
   resolve: {
+    alias: {
+      react: path.join(__dirname, 'node_modules', 'react'),
+    },
     extensions: ['.js', '.jsx', '.json'],
   },
 
-  watch: true,
-  devtool: 'source-map',
+  watch: false,
 };
