@@ -6,17 +6,17 @@ const rtlConfig = require('./webpack/rtl.config');
 const branchName = require('./webpack/branchName');
 
 module.exports = () => {
-// Base params
-// Entry path
+  // Base params
+  // Entry path
   const entryPath = 'src/';
   const entryFile = 'index.jsx';
 
-// Output path
+  // Output path
   const outputPath = `C:\\eb\\workspaces\\mango\\${branchName}\\WebRoot\\app\\shop\\TO-BE_DEFINED`;
   const outputFile = 'main.js';
 
-// Extract SASS and convert to CSS file
-// Output the CSS into a different file
+  // Extract SASS and convert to CSS file
+  // Output the CSS into a different file
   const extractSass = new ExtractTextPlugin({
     filename: 'styles.css',
   });
@@ -38,7 +38,7 @@ module.exports = () => {
           test: /\.scss$/,
           use: extractSass.extract({
             use: [
-              {loader: 'css-loader'},
+              { loader: 'css-loader' },
               {
                 loader: 'postcss-loader',
                 options: {
