@@ -2,6 +2,9 @@
 // Copy this file, and add rule overrides as needed.
 {
   "extends": "airbnb",
+  "env": {
+    "jest": true
+  },
   "globals": {
     "document": true,
     "window": true
