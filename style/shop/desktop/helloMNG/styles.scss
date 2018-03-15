@@ -1,0 +1,12 @@
+@import '../../../../node_modules/mng-styleguide/shop/desktop/modules/all';
+@import '../../../../node_modules/mng-styleguide/shop/desktop/partials/all';
+
+.title {
+  @include margin(20px auto);
+  color: $black;
+  font-family: $regular;
+  font-size: $size-xxxxxl;
+  text-align: center;
+  width: 100%;
+}
+

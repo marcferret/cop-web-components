@@ -2,17 +2,20 @@ const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const WebpackRTLPlugin = require('webpack-rtl-plugin');
+const SassLintPlugin = require('sasslint-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const Dotenv = require('dotenv-webpack');
 const rtlConfig = require('./webpack/rtl.config');
 const branchName = require('./webpack/branchName');
 
-module.exports = () => {
+module.exports = (env) => {
   // Base params
   // Entry path
-  const entryPath = 'src/';
+  const entryPath = `src/${env.context}/${env.device}/`;
   const entryFile = 'index.jsx';
 
   // Output path
-  const outputPath = `C:\\eb\\workspaces\\mango\\${branchName}\\WebRoot\\app\\shop\\TO-BE_DEFINED`;
+  const outputPath = `C:\\eb\\workspaces\\mango\\${branchName}\\WebRoot\\app\\${env.context}\\${env.device}\\${env.component}`;
   const outputFile = 'main.js';
 
   // Extract SASS and convert to CSS file
@@ -21,11 +24,35 @@ module.exports = () => {
     filename: 'styles.css',
   });
 
+  const getPlugins = () => {
+    const plugins = [
+      extractSass,
+      new WebpackRTLPlugin(rtlConfig()),
+      new Dotenv({
+        path: (env.NODE_ENV === 'local') ? `./.env.${env.context}.local` : `./.env.${env.context}`, // Path to .env file (this is the default)
+        safe: false, // load .env.example (defaults to "false" which does not use dotenv-safe)
+      }),
+      new SassLintPlugin({
+        configFile: '.sass-lint.yml',
+        context: ['./style'],
+      }),
+    ];
+
+    if (env.analyzer) {
+      plugins.push(new BundleAnalyzerPlugin());
+    }
+
+    return plugins;
+  };
+
   return {
-    entry: path.resolve(entryPath, entryFile),
-    devtool: 'inline-source-map',
+    entry: path.resolve(entryPath, env.component, entryFile),
+    devtool: (env.NODE_ENV === 'pro') ? 'none' : 'inline-source-map',
     devServer: {
+      contentBase: path.join(__dirname, 'public'),
+      openPage: `${env.component}.html`,
       disableHostCheck: true,
+      historyApiFallback: true,
     },
     output: {
       filename: outputFile,
@@ -56,7 +83,6 @@ module.exports = () => {
             ],
           }),
         },
-
         // JS
         {
           test: /\.(js|jsx)$/, // include .jsx files
@@ -73,26 +99,15 @@ module.exports = () => {
             },
           ],
         },
-
         // ESLINT
         {
           test: /\.(js|jsx)$/, // include .jsx files
           exclude: /nodes_modules/,
           loader: 'eslint-loader',
         },
-
-        // SASS-LINT
-        {
-          test: /\.scss$/,
-          exclude: /node-modules/,
-          loader: 'sasslint-loader',
-        },
       ],
     },
-    plugins: [
-      extractSass,
-      new WebpackRTLPlugin(rtlConfig()),
-    ],
+    plugins: getPlugins(),
     resolve: {
       alias: {
         react: path.join(__dirname, 'node_modules', 'react'),
