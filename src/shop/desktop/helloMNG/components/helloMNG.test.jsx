@@ -2,10 +2,11 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import HelloMNG from './helloMNG';
 import HelloMNGService from '../services/helloMNG';
+import helloMNGData from '../__mocks__/helloMNG';
 
 const wait = () => new Promise(resolve => setImmediate(resolve));
 
-HelloMNGService.getMessage = jest.fn(() => Promise.resolve({ message: 'Hello MANGO!' }));
+HelloMNGService.getMessage = jest.fn(() => Promise.resolve(helloMNGData));
 
 describe('helloMNG component', () => {
   let wrapper;
