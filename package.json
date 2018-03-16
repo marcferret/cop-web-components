@@ -3,7 +3,13 @@
   "version": "1.0.0",
   "description": "MANGO starter",
   "main": "index.jsx",
-  "repository": "git@jira.mangodev.net/stash/scm/fron/mng-starter.git",
+  "repository": {
+    "type": "git",
+    "url": "https://jira.mangodev.net/stash/scm/fron/mng-starter"
+  },
+  "publishConfig": {
+    "registry": "https://citools.mangodev.net/nexus/content/repositories/npmjsmango/"
+  },
   "component": "helloMNG",
   "scripts": {
     "start:shop:mobile": "cross-var webpack-dev-server --open --env.context=shop --env.device=mobile --env.component=$npm_package_component --env.NODE_ENV=local",
