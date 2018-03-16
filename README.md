@@ -14,11 +14,9 @@ Para la realización de esta guía nos hemos basado en dos artículos principalm
 
 [User Interface](#user-interface--react)
 
-[State Mangement](#state-management--redux)
-
 [SASS](#sass)
-  
-  
+
+
   
 
 ## **<a name="user-interface--react"></a>User Interface - React**
@@ -27,13 +25,6 @@ Para la realización de esta guía nos hemos basado en dos artículos principalm
 La renderización por parte de cliente se llevará a cabo con **ReactJS**. Se ha optado por ReactJS, por el hecho de que nos permite llegar al objetivo final que es tener una SPA (Single Page Application), pero nos permite hacerlo de manera gradual y prescindiendo de ello si en alguna Ã¡rea no queremos que así sea.
 
 La decisión de usar ReactJS fue porque vimos que podámos ir migrando poco a poco componentes ya existentes, sin la necesidad de tener que hacer un desarrollo completo para poder salir a producción. A parte de esto, tambien vimos que ReactJS tení­a una gran empresa detrás que lo mantiene, a parte de una gran comunidad de desarrolladores. AsÃ­ como también muchos eventos y charlas.
-
-
-## **<a name="state-management--redux"></a>State Management - Redux**
-***
-
-Para la gestión del state de nuestra aplicación hemos optado por **Redux**. De todos los sistemas para gestionar el state de nuestra aplicación, hemos visto que hay un claro ganador en cuanto a facilidad de uso, documentación, ejemplos... Por esto hemos decidido apostar por él.
-
 
 
 ## **<a name="sass"></a>SASS**
