@@ -32,4 +32,4 @@ La decisión de usar ReactJS fue porque vimos que podámos ir migrando poco a po
 
 Los estilos siempre es algo complicado, ya que a diferencia de JavaScript la organización siempre es un poco más caótica. Para ello hemos definido una guía de estilos dónde entramos más en detalle en cada una de las partes.
 
-[Guía de estilos](style/)
+[Guía de estilos](https://jira.mangodev.net/stash/projects/FRON/repos/mng-styleguide/browse)
