@@ -4,14 +4,10 @@ bundle.js
 npm-debug.log
 .DS_Store
 .env
+.npmrc
 
 # IntelliJ
 *.iml
 /.idea
 coverage/
 test/shop/desktop/partials/mangoCard/__snapshots__/
-
-.npmrc
-
-
-
