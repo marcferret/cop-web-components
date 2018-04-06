@@ -1,10 +1,17 @@
+# Project
 /node_modules
 bundle.js
 npm-debug.log
 .DS_Store
+.env
 
 # IntelliJ
 *.iml
 /.idea
 coverage/
 test/shop/desktop/partials/mangoCard/__snapshots__/
+
+.npmrc
+
+
+

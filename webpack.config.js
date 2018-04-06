@@ -6,16 +6,21 @@ const SassLintPlugin = require('sasslint-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const Dotenv = require('dotenv-webpack');
 const rtlConfig = require('./webpack/rtl.config');
-const branchName = require('./webpack/branchName');
+require('dotenv').config();
 
 module.exports = (env) => {
+  // ENV Params
+  const branchName = process.env.BRANCH_NAME || 'RELEASE_INT';
+  const specificsName = process.env.SPECIFICS_NAME || 'home';
+  const pathWorkspaces = process.env.PATH_WORKSPACES || 'C:/eb/workspaces/mango/';
+
   // Base params
   // Entry path
   const entryPath = `src/${env.context}/${env.device}/`;
   const entryFile = 'index.jsx';
 
   // Output path
-  const outputPath = `C:\\eb\\workspaces\\mango\\${branchName}\\WebRoot\\app\\${env.context}\\${env.device}\\${env.component}`;
+  const outputPath = `${pathWorkspaces}${branchName}/WebRoot/app/${env.context}/${env.device}/${specificsName}`;
   const outputFile = 'main.js';
 
   // Extract SASS and convert to CSS file
@@ -29,7 +34,6 @@ module.exports = (env) => {
       extractSass,
       new WebpackRTLPlugin(rtlConfig()),
       new Dotenv({
-        path: (env.NODE_ENV === 'local') ? `./.env.${env.context}.local` : `./.env.${env.context}`, // Path to .env file (this is the default)
         safe: false, // load .env.example (defaults to "false" which does not use dotenv-safe)
       }),
       new SassLintPlugin({
@@ -46,11 +50,11 @@ module.exports = (env) => {
   };
 
   return {
-    entry: path.resolve(entryPath, env.component, entryFile),
-    devtool: (env.NODE_ENV === 'pro') ? 'none' : 'inline-source-map',
+    entry: path.resolve(entryPath, process.env.SPECIFICS_NAME, entryFile),
+    devtool: (process.env.NODE_ENV === 'production') ? 'none' : 'inline-source-map',
     devServer: {
       contentBase: path.join(__dirname, 'public'),
-      openPage: `${env.component}.html`,
+      openPage: `${process.env.SPECIFICS_NAME}.html`,
       disableHostCheck: true,
       historyApiFallback: true,
     },
