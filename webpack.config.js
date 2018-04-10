@@ -4,23 +4,16 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const WebpackRTLPlugin = require('webpack-rtl-plugin');
 const SassLintPlugin = require('sasslint-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const Dotenv = require('dotenv-webpack');
 const rtlConfig = require('./webpack/rtl.config');
-require('dotenv').config();
+const specificsName = require('./config').BUILD_SPECIFICS_NAME;
 
 module.exports = (env) => {
-  // ENV Params
-  const branchName = process.env.BRANCH_NAME || 'RELEASE_INT';
-  const specificsName = process.env.SPECIFICS_NAME || 'home';
-  const pathWorkspaces = process.env.PATH_WORKSPACES || 'C:/eb/workspaces/mango/';
-
-  // Base params
   // Entry path
   const entryPath = `src/${env.context}/${env.device}/`;
   const entryFile = 'index.jsx';
 
   // Output path
-  const outputPath = `${pathWorkspaces}${branchName}/WebRoot/app/${env.context}/${env.device}/${specificsName}`;
+  const outputPath = `dist/${env.context}/${env.device}/`;
   const outputFile = 'main.js';
 
   // Extract SASS and convert to CSS file
@@ -29,38 +22,23 @@ module.exports = (env) => {
     filename: 'styles.css',
   });
 
-  const getPlugins = () => {
-    const plugins = [
-      extractSass,
-      new WebpackRTLPlugin(rtlConfig()),
-      new Dotenv({
-        safe: false, // load .env.example (defaults to "false" which does not use dotenv-safe)
-      }),
-      new SassLintPlugin({
-        configFile: '.sass-lint.yml',
-        context: ['./style'],
-      }),
-    ];
-
-    if (env.analyzer) {
-      plugins.push(new BundleAnalyzerPlugin());
-    }
-
-    return plugins;
-  };
-
   return {
-    entry: path.resolve(entryPath, process.env.SPECIFICS_NAME, entryFile),
-    devtool: (process.env.NODE_ENV === 'production') ? 'none' : 'inline-source-map',
+    entry: {
+      [specificsName]: path.resolve(__dirname, entryPath, specificsName, entryFile),
+    },
     devServer: {
       contentBase: path.join(__dirname, 'public'),
-      openPage: `${process.env.SPECIFICS_NAME}.html`,
+      open: true,
+      openPage: `${specificsName}.html`,
       disableHostCheck: true,
       historyApiFallback: true,
     },
     output: {
       filename: outputFile,
-      path: path.resolve(__dirname, outputPath),
+      path: path.resolve(__dirname, outputPath, specificsName),
+    },
+    node: {
+      fs: 'empty',
     },
     module: {
       rules: [
@@ -111,7 +89,25 @@ module.exports = (env) => {
         },
       ],
     },
-    plugins: getPlugins(),
+    plugins: ((plugins) => {
+      plugins.push(
+        extractSass,
+        new WebpackRTLPlugin(rtlConfig()),
+        new SassLintPlugin({
+          configFile: '.sass-lint.yml',
+          context: [`./style/${env.context}/${env.device}/${specificsName}`],
+        }),
+      );
+
+      if (env.analyzer) {
+        plugins.push(new BundleAnalyzerPlugin({
+          analyzerMode: 'static',
+          reportFilename: path.join(__dirname, './analyzer/report.html'),
+        }));
+      }
+
+      return plugins;
+    })([]),
     resolve: {
       alias: {
         react: path.join(__dirname, 'node_modules', 'react'),

@@ -7,9 +7,6 @@
     "type": "git",
     "url": "https://jira.mangodev.net/stash/scm/fron/mng-starter"
   },
-  "publishConfig": {
-    "registry": "https://citools.mangodev.net/nexus/content/repositories/npmjsmango/"
-  },
   "scripts": {
     "start:shop:mobile": "webpack-dev-server --open --env.context=shop --env.device=mobile",
     "start:shop:tablet": "webpack-dev-server --open --env.context=shop --env.device=tablet",
@@ -73,6 +70,7 @@
     "jest-enzyme": "^4.0.1",
     "mng-styleguide": "https://jira.mangodev.net/stash/scm/fron/mng-styleguide.git",
     "node-sass": "^4.5.3",
+    "npm-run-all": "^4.1.2",
     "postcss-loader": "^2.0.7",
     "react-addons-test-utils": "^15.6.2",
     "react-test-renderer": "^16.0.0",
@@ -90,7 +88,6 @@
     "axios": "^0.16.2",
     "babel-polyfill": "^6.26.0",
     "dotenv": "^5.0.1",
-    "dotenv-webpack": "^1.5.5",
     "element-dataset": "^2.2.6",
     "enzyme": "^3.1.0",
     "enzyme-adapter-react-16": "^1.0.2",

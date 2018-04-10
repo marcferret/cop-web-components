@@ -1,22 +1,28 @@
 const fs = require('fs');
 const client = require('scp2');
-const result = require('dotenv').config();
-const entryPath = `${process.env.PATH_WORKSPACES}${process.env.BRANCH_NAME}/WebRoot/app/`;
-const outputPath = '/opt/deploy/code/webapps/ROOT/app/';
-const specificsPath = `${process.env.CONTEXT}/${process.env.DEVICE}/${process.env.SPECIFICS_NAME}/`;
+const env = require('./config');
 
-if (result.error) {
-  throw result.error;
-}
+const entryPath = 'dist';
+const outputPath = '/opt/deploy/code/webapps/ROOT/app';
+const deployPath = env.DEPLOY_PATH;
+const userHome = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'];
 
-client.scp(entryPath + specificsPath, {
-  host: process.env.HOST,
+const host = 'qvals-mng-starter-shop.dev.mango.com';
+const pathPrivateKey = `${userHome}/.ssh/AmazonTests.ppk`;
+
+client.scp(entryPath + deployPath, {
+  host,
   username: 'code',
-  privateKey: fs.readFileSync(process.env.PATH_PRIVATE_KEY),
-  path: outputPath + specificsPath,
+  privateKey: fs.readFileSync(pathPrivateKey),
+  path: outputPath + deployPath,
 }, (err) => {
   if (typeof err !== 'undefined') {
-    return console.log(err);
+    console.log(err);
+    return false;
   }
-  return console.log('Deploy success!');
+
+  console.log('\n--------------');
+  console.log('DEPLOY SUCCESS');
+  console.log('--------------\n');
+  return true;
 });

@@ -1,13 +1,15 @@
 # Project
 /node_modules
-bundle.js
+/dist
+/coverage
+/analyzer
 npm-debug.log
-.DS_Store
+yarn-error.log
 .env
 .npmrc
+.yarnrc
 
-# IntelliJ
+
+# WebStorm
 *.iml
 /.idea
-coverage/
-test/shop/desktop/partials/mangoCard/__snapshots__/
