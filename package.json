@@ -35,6 +35,7 @@
     "test:watch": "jest --watchAll",
     "test:coverage": "jest --coverage",
     "deploy": "node deploy.js",
+    "copy": "node copy.js",
     "bundle-analyzer": "webpack -p --env.context=shop --env.device=desktop --env.analyzer=true"
   },
   "author": "Equipo ecommerce FrontEnd <eqp.ecommerce.frontend@mango.com>",
@@ -97,6 +98,7 @@
     "fbemitter": "^2.1.1",
     "lodash": "^4.17.4",
     "mdn-polyfills": "^5.4.0",
+    "ncp": "^2.0.0",
     "progress-bar-webpack-plugin": "^1.11.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
