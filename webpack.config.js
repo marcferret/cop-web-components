@@ -1,11 +1,17 @@
 const webpack = require('webpack');
+const fs = require('fs');
 const path = require('path');
+const SassLintPlugin = require('sasslint-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const WebpackRTLPlugin = require('webpack-rtl-plugin');
-const SassLintPlugin = require('sasslint-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const rtlConfig = require('./webpack/rtl.config');
-const specificsName = require('./config').BUILD_SPECIFICS_NAME;
+
+// Dotenv configuration
+const envPath = (fs.existsSync('.env')) ? '.env' : '.env.default';
+require('dotenv').config({ path: envPath });
 
 module.exports = (env) => {
   // Entry path
@@ -15,6 +21,9 @@ module.exports = (env) => {
   // Output path
   const outputPath = `dist/${env.context}/${env.device}/`;
   const outputFile = 'main.js';
+
+  // Specifics name
+  const specificsName = process.env.BUILD_SPECIFICS_NAME;
 
   // Extract SASS and convert to CSS file
   // Output the CSS into a different file
@@ -89,25 +98,29 @@ module.exports = (env) => {
         },
       ],
     },
-    plugins: ((plugins) => {
-      plugins.push(
-        extractSass,
-        new WebpackRTLPlugin(rtlConfig()),
+    plugins: (() => {
+      const plugins = [
         new SassLintPlugin({
           configFile: '.sass-lint.yml',
           context: [`./style/${env.context}/${env.device}/${specificsName}`],
         }),
-      );
-
+        extractSass,
+        new WebpackRTLPlugin(rtlConfig()),
+        new Dotenv({
+          path: envPath,
+          safe: false,
+          silent: true,
+        }),
+        new ProgressBarPlugin(),
+      ];
       if (env.analyzer) {
         plugins.push(new BundleAnalyzerPlugin({
           analyzerMode: 'static',
           reportFilename: path.join(__dirname, './analyzer/report.html'),
         }));
       }
-
       return plugins;
-    })([]),
+    })(),
     resolve: {
       alias: {
         react: path.join(__dirname, 'node_modules', 'react'),

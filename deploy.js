@@ -1,17 +1,18 @@
 const fs = require('fs');
 const client = require('scp2');
-const env = require('./config');
+
+// Dotenv configuration
+const envPath = (fs.existsSync('.env')) ? '.env' : '.env.default';
+require('dotenv').config({ path: envPath });
 
 const entryPath = 'dist';
 const outputPath = '/opt/deploy/code/webapps/ROOT/app';
-const deployPath = env.DEPLOY_PATH;
+const deployPath = process.env.DEPLOY_PATH;
 const userHome = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'];
-
-const host = 'qvals-mng-starter-shop.dev.mango.com';
 const pathPrivateKey = `${userHome}/.ssh/AmazonTests.ppk`;
 
 client.scp(entryPath + deployPath, {
-  host,
+  host: process.env.DEPLOY_HOST,
   username: 'code',
   privateKey: fs.readFileSync(pathPrivateKey),
   path: outputPath + deployPath,
