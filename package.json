@@ -8,9 +8,9 @@
     "url": "https://jira.mangodev.net/stash/scm/fron/mng-starter"
   },
   "scripts": {
-    "start:shop:mobile": "webpack-dev-server --env.context=shop --env.device=mobile",
-    "start:shop:tablet": "webpack-dev-server --env.context=shop --env.device=tablet",
-    "start:shop:desktop": "webpack-dev-server --env.context=shop --env.device=desktop",
+    "start:shop:mobile": "webpack-dev-server -d --env.context=shop --env.device=mobile",
+    "start:shop:tablet": "webpack-dev-server -d --env.context=shop --env.device=tablet",
+    "start:shop:desktop": "webpack-dev-server -d --env.context=shop --env.device=desktop",
     "dev:shop": "npm-run-all dev:shop:*",
     "dev:shop:mobile": "webpack -d --env.context=shop --env.device=mobile -w",
     "dev:shop:tablet": "webpack -d --env.context=shop --env.device=tablet -w",
