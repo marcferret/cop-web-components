@@ -79,17 +79,7 @@ module.exports = (env) => {
         {
           test: /\.(js|jsx)$/, // include .jsx files
           exclude: [/node_modules/], // exclude any and all files in the node_modules folder
-          use: [
-            {
-              loader: 'babel-loader',
-              query: {
-                presets: [
-                  'env',
-                  'react',
-                ],
-              },
-            },
-          ],
+          loader: 'babel-loader',
         },
         // ESLINT
         {
