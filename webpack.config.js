@@ -1,33 +1,29 @@
 const webpack = require('webpack');
 const fs = require('fs');
 const path = require('path');
-const SassLintPlugin = require('sasslint-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const WebpackRTLPlugin = require('webpack-rtl-plugin');
 const Dotenv = require('dotenv-webpack');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const ProgressBarPlugin = require('progress-bar-webpack-plugin');
-const rtlConfig = require('./webpack/rtl.config');
+require('dotenv').config();
 
 // Dotenv configuration
 const envPath = (fs.existsSync('.env')) ? '.env' : '.env.default';
 require('dotenv').config({ path: envPath });
 
-module.exports = (env) => {
+module.exports = () => {
   // Specifics name
   const specificsName = process.env.BUILD_SPECIFICS_NAME;
 
   // Entry path
-  const entryPath = path.join('src', env.context, env.device, specificsName);
+  const entryPath = path.join('src', specificsName);
   const entryFile = 'index.jsx';
 
   // Output path
-  const outputPath = path.join('dist', env.context, env.device, specificsName);
+  const outputPath = path.join('public', specificsName);
   const outputFile = 'main.js';
 
   // Clean path
-  const cleanPath = path.join('dist', env.context, env.device, specificsName);
+  const cleanPath = path.join('dist', specificsName);
 
   // Extract SASS and convert to CSS file
   // Output the CSS into a different file
@@ -54,18 +50,10 @@ module.exports = (env) => {
       rules: [
         // SCSS
         {
-          test: /\.scss$/,
+          test: /\.(css|scss)$/,
           use: extractSass.extract({
             use: [
               { loader: 'css-loader' },
-              {
-                loader: 'postcss-loader',
-                options: {
-                  config: {
-                    path: './webpack/postcss.config.js',
-                  },
-                },
-              },
               {
                 loader: 'sass-loader',
                 options: {
@@ -91,12 +79,7 @@ module.exports = (env) => {
     },
     plugins: (() => {
       const plugins = [
-        new SassLintPlugin({
-          configFile: '.sass-lint.yml',
-          context: [path.join(__dirname, 'style', env.context, env.device, specificsName)],
-        }),
         extractSass,
-        new WebpackRTLPlugin(rtlConfig()),
         new Dotenv({
           path: envPath,
           safe: false,
@@ -106,14 +89,7 @@ module.exports = (env) => {
           beforeEmit: true,
           verbose: false,
         }),
-        new ProgressBarPlugin(),
       ];
-      if (env.analyzer) {
-        plugins.push(new BundleAnalyzerPlugin({
-          analyzerMode: 'static',
-          reportFilename: path.join(__dirname, 'analyzer', 'report.html'),
-        }));
-      }
       return plugins;
     })(),
     resolve: {

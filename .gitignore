@@ -1,15 +1,11 @@
 # Project
 /node_modules
-/dist
-/dist_copy
 /coverage
-/analyzer
 npm-debug.log
 yarn-error.log
 .env
 .npmrc
 .yarnrc
-
 
 # WebStorm
 *.iml

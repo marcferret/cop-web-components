@@ -1,7 +1,6 @@
 {
   "plugins": [
-    ["transform-runtime"],
-    ["lodash"]
+    ["@babel/transform-runtime"]
   ],
-  "presets": ["react", "env"]
+  "presets": ["@babel/react", "@babel/env"]
 }
