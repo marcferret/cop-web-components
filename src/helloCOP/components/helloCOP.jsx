@@ -14,6 +14,7 @@ export default class HelloCOP extends React.Component {
     return (
       <React.Fragment>
         <h1 className="title">{message}</h1>
+        <hello-web-component />
       </React.Fragment>
     );
   }
