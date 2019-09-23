@@ -16,14 +16,11 @@ module.exports = () => {
 
   // Entry path
   const entryPath = path.join('src', specificsName);
-  const entryFile = 'index.jsx';
+  const entryFile = 'index.js';
 
   // Output path
-  const outputPath = path.join('public', specificsName);
+  const outputPath = path.join('dist', specificsName);
   const outputFile = 'main.js';
-
-  // Clean path
-  const cleanPath = path.join('dist', specificsName);
 
   // Extract SASS and convert to CSS file
   // Output the CSS into a different file
@@ -36,9 +33,9 @@ module.exports = () => {
       [specificsName]: path.join(__dirname, entryPath, entryFile),
     },
     devServer: {
-      contentBase: path.join(__dirname, 'public'),
+      contentBase: path.join(__dirname, 'dist'),
       open: true,
-      openPage: `${specificsName}.html`,
+      openPage: 'index.html',
       disableHostCheck: true,
       historyApiFallback: true,
     },
@@ -84,11 +81,7 @@ module.exports = () => {
           path: envPath,
           safe: false,
           silent: true,
-        }),
-        new CleanWebpackPlugin([cleanPath], {
-          beforeEmit: true,
-          verbose: false,
-        }),
+        })
       ];
       return plugins;
     })(),
