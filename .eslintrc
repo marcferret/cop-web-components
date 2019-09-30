@@ -8,7 +8,8 @@
   "globals": {
     "document": true,
     "HTMLElement": true,
-    "window": true
+    "window": true,
+    "CustomEvent": true
   },
   "rules": {
     "react/prop-types": ["error", { "ignore": [], "customValidators": [], "skipUndeclared": true }]
