@@ -4,7 +4,7 @@ export default class MngHeader extends HTMLElement {
     super();
     this.attachShadow({ mode: 'open' });
     this.shadowRoot.innerHTML = `
-      <h1>Hello!!!</h1>
+      <h1 id="title">Hello!!!</h1>
     `;
   }
 }
