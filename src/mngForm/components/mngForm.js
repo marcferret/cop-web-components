@@ -12,6 +12,7 @@ export default class MngForm extends HTMLElement {
 
   changeTitle() {
     const { shadowRoot } = this;
+
     shadowRoot.querySelector('#updateHeaderButton').addEventListener('click', () => {
       const inputValue = shadowRoot.querySelector('#updateHeader').value;
       const changeTitleEvent = new CustomEvent('mngForm.changeTitle', { detail: { title: inputValue } });
