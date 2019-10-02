@@ -3,8 +3,8 @@ export default class MngForm extends HTMLElement {
     super();
     this.attachShadow({ mode: 'open' });
     this.shadowRoot.innerHTML = `
-      <h1>Form!!!!</h1>
-      <input id="updateHeader" placeholder="Introduce el nuevo titulo:" value="" />
+      <h3>Change the title here</h3>
+      <input id="updateHeader" placeholder="What's the new title?" value="" />
       <button id="updateHeaderButton">Change Title</button>
     `;
     this.changeTitle();
