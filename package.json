@@ -41,7 +41,7 @@
     "extract-text-webpack-plugin": "v4.0.0-alpha.0",
     "jest": "~24.7.1",
     "jest-enzyme": "~7.0.0",
-    "node-sass": "~4.11.0",
+    "node-sass": "~4.13.1",
     "postcss-scss": "~2.0.0",
     "sass-loader": "~7.1.0",
     "webpack": "~4.29.5",
